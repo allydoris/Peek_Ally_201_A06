@@ -45,7 +45,7 @@ To get full credit for this Question you must:
 ::: {.callout-tip icon="false"}
 ## Github Repo Link
 
-[https://github.com/allydoris/Peek_Ally_201_A06](https://github.com/allydoris/Peek_Ally_201_A06)
+<https://github.com/allydoris/Peek_Ally_201_A06>
 :::
 
 ::: {.callout-tip icon="false"}
@@ -94,7 +94,11 @@ Extract the value `8162` (LeBron James points) in 2 different ways:
 -   using names
 
 ```{r}
+Lebron_James_pts <- player_info[[2]][[4]]
+Lebron_James_pts
 
+Lebron_James_pts2 <- player_info$LJ$points
+Lebron_James_pts2
 ```
 
 ### Part b (3 points)
@@ -104,6 +108,13 @@ Add a new named element to the end of each player's list called `height`. The he
 Print the `player_info` list to prove you were successful.
 
 ```{r}
+heights <- c(78, 81, 78, 86, 85)
+
+for(i in 1:length(player_info)){
+  player_info[[i]]$height = heights[i]
+}
+
+print(player_info)
 
 ```
 
@@ -122,7 +133,8 @@ Hint: initialize an empty list
 Note: this must still run correctly even if the values were to change or if another player were added to the list or if the player order changed.
 
 ```{r}
-
+points_per_game <- lapply(player_info, function(player) {player$points/player$games_played})
+points_per_game
 ```
 
 ### Part d (1 point)
@@ -132,7 +144,8 @@ Use the list created in Part c and an appropriate apply function to round each v
 Store the output as a vector and print the results.
 
 ```{r}
-
+point_per_game_vec <- sapply(points_per_game, function(x) round(x, 2))
+print(point_per_game_vec)
 ```
 
 ## Question 3 (3 points)
@@ -153,6 +166,13 @@ Hint: use `MARGIN = 1:2` to apply the function to each value instead of only a r
 
 ```{r}
 
+mat_rand2 <- apply(mat_rand, MARGIN = 1:2, 
+  function(x){
+    round(x, -(nchar(x)-1))
+  }
+)
+mat_rand
+mat_rand2
 ```
 
 ## Question 4 (9 points)
