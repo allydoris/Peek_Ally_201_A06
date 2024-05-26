@@ -195,7 +195,7 @@ max_temps <- read_tsv("state_max_temps.tsv") |>
 Calculate the average temperature for each month across the whole data frame (using the data for all three states together).
 
 ```{r}
-avg_temp <- apply(max_temps[, c('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec')], 2, mean)
+avg_temp <- apply(max_temps[, 3:14], 2, mean)
 avg_temp
 ```
 
@@ -232,7 +232,7 @@ Example (this is NOT the answer just an example of what goes in the {}):
 Note: This code should still run successfully even if the numbers were to change.
 
 ```{r}
-co_med <- apply(CO_max_temps[, c('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec')], 1, median)
+co_med <- apply(CO_max_temps[, 3:14], 1, median)
 names(co_med) = 1895:2020 # reassign year labels to max temps
 
 print(paste0('The maximum median annual temperature of ', max(co_med), ' occured in ', names(which.max(co_med)), ' and the minimum median annual temperature of ', min(co_med), ' occured in ', names(which.min(co_med)), '.'))
